@@ -5,19 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
+
+    fun randomNote(): NoteAndSchedule {
+        return NoteAndSchedule(Note.generateRandomNote(), Note.generateRandomSchedule())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dataset = arrayOf("January", "February", "March")
+        val dataset = arrayOf(randomNote(), randomNote(), randomNote())
         val customAdapter = CustomRecyclerViewAdapter(dataset)
 
         val recyclerView: RecyclerView = findViewById(R.id.notes_recyclerView)
         recyclerView.adapter = customAdapter
-
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
