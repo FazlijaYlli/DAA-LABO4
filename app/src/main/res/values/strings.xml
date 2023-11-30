@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">DAA-LABO4</string>
+    <string name="app_name">Labo 4</string>
+    <string name="main_menu_sort">Sort</string>
+    <string name="main_menu_sort_eta">ETA</string>
+    <string name="main_menu_sort_cd">Creation Date</string>
+    <string name="main_menu_actions_generate">Generate</string>
+    <string name="main_menu_actions_delete">Delete All</string>
 </resources>
