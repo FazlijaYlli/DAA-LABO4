@@ -89,8 +89,11 @@ class CustomRecyclerViewAdapter(private val repository: Repository) :
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = repository.nasCount.value!!
-
+    //override fun getItemCount() = repository.nasCount.value!!
+    // Todo : Is it ok ?
+    override fun getItemCount(): Int {
+        return if (repository.nasCount.value == null) 0 else repository.nasCount.value!!
+    }
     /*override fun getItemViewType(position: Int): Int {
         return dataSet[position].note.type.ordinal
     }*/
