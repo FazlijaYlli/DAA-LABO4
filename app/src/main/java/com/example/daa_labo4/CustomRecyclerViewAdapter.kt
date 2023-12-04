@@ -8,13 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.Group
 import androidx.recyclerview.widget.RecyclerView
+import com.example.daa_labo4.db.Repository
 import com.example.daa_labo4.models.NoteAndSchedule
 import com.example.daa_labo4.models.State
 import com.example.daa_labo4.models.Type
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class CustomRecyclerViewAdapter(private val dataSet: Array<NoteAndSchedule>) :
+class CustomRecyclerViewAdapter(private val repository: Repository) :
     RecyclerView.Adapter<CustomRecyclerViewAdapter.ViewHolder>() {
 
     /**
@@ -82,14 +83,16 @@ class CustomRecyclerViewAdapter(private val dataSet: Array<NoteAndSchedule>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.bind(dataSet[position])
+        repository.allNaS.value?.get(position)?.let {
+            viewHolder.bind(it)
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = repository.nasCount.value!!
 
-    override fun getItemViewType(position: Int): Int {
+    /*override fun getItemViewType(position: Int): Int {
         return dataSet[position].note.type.ordinal
-    }
+    }*/
 
 }
