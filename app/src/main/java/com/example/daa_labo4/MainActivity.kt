@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dataset = arrayOf(randomNote(), randomNote(), randomNote())
-        val customAdapter = CustomRecyclerViewAdapter(dataset)
+        val customAdapter = CustomRecyclerViewAdapter((application as DbApp).repository)
 
         val recyclerView: RecyclerView = findViewById(R.id.notes_recyclerView)
         recyclerView.adapter = customAdapter

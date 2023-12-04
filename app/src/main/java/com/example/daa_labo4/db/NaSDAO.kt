@@ -1,3 +1,5 @@
+package com.example.daa_labo4.db
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -9,21 +11,16 @@ import com.example.daa_labo4.models.NoteAndSchedule;
 
 @Dao
 interface NaSDAO {
-    @Insert
-    fun insert(nas :NoteAndSchedule): Long
+    fun deleteAll() {
+        deleteAllNotes()
+        deleteAllSchedules()
+    }
 
-    @Update
-    fun update(nas: NoteAndSchedule)
+    @Query("DELETE FROM Note") fun deleteAllNotes()
+    @Query("DELETE FROM Schedule") fun deleteAllSchedules()
 
-    @Delete
-    fun delete(nas: NoteAndSchedule)
+    @Query("SELECT COUNT(*) FROM Note") fun count(): LiveData<Int>
 
-    @Query("DELETE FROM NoteAndSchedule")
-    fun deleteAll()
-
-    @Query("SELECT * FROM NoteAndSchedule")
-    fun getAllNaS() : LiveData<List<NoteAndSchedule>>
-
-    @Query("SELECT COUNT(*) FROM NoteAndSchedule")
-    fun getCount() : LiveData<Long>
+    @Query("SELECT * FROM Note AS n LEFT JOIN Schedule AS s ON s.ownerId = n.noteId ORDER BY s.date ASC")
+    fun get(): LiveData<List<NoteAndSchedule>>
 }
