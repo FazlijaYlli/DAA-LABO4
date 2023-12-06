@@ -5,4 +5,6 @@
     <string name="main_menu_sort_cd">Creation Date</string>
     <string name="main_menu_actions_generate">Generate</string>
     <string name="main_menu_actions_delete">Delete All</string>
+    <string name="generate_button_text">GENERATE</string>
+    <string name="button_delete_text">DELETE</string>
 </resources>

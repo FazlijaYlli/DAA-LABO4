@@ -1,4 +1,4 @@
-package com.example.daa_labo4
+package com.example.daa_labo4.views
 
 import com.example.daa_labo4.models.*
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.daa_labo4.CustomRecyclerViewAdapter
+import com.example.daa_labo4.DbApp
+import com.example.daa_labo4.NotesViewModel
+import com.example.daa_labo4.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+/*
         val customAdapter = CustomRecyclerViewAdapter()
 
         val recyclerView: RecyclerView = findViewById(R.id.notes_recyclerView)
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         (application as DbApp).repository.allNaS.observe(this) {
             customAdapter.noteList = it
             customAdapter.notifyDataSetChanged()
-        }
+        }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
