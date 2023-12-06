@@ -6,7 +6,7 @@ import com.example.daa_labo4.models.Note
 import com.example.daa_labo4.models.NoteAndSchedule
 
 public class NotesViewModel(private val repository: Repository) : ViewModel() {
-    val allNotes = repository.allNaS
+    var allNotes = repository.allNaS
     val countNotes = repository.nasCount
 
     fun generateANote() {
@@ -16,5 +16,13 @@ public class NotesViewModel(private val repository: Repository) : ViewModel() {
 
     fun deleteAllNote() {
         repository.deleteAll()
+    }
+
+    fun sortNoteListByCreationDate() {
+        allNotes = repository.sortedByCreation()
+    }
+
+    fun sortNoteListByNearestDueDate() {
+        allNotes = repository.sortedByETA()
     }
 }

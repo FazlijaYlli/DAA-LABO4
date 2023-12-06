@@ -38,12 +38,19 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        val nvm = NotesViewModel((application as DbApp).repository);
+        val nvm = NotesViewModel((application as DbApp).repository)
+
         when (item.itemId) {
             R.id.Generate_item ->  nvm.generateANote()
             R.id.DeleteAll_item -> nvm.deleteAllNote()
-            R.id.sort ->  {} // todo: sort notes par creation dans le fragment
-            R.id.creation_date_item -> {} // todo: sort notes par date prévue dans le fragment
+            R.id.sort -> {
+                //TODO : update la recyclerView
+                nvm.sortNoteListByNearestDueDate()
+            }
+            R.id.creation_date_item -> {
+                //TODO : update la recyclerView
+                nvm.sortNoteListByCreationDate()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

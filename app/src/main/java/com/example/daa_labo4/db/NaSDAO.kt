@@ -23,4 +23,10 @@ interface NaSDAO {
 
     @Query("SELECT * FROM Note")
     fun get(): LiveData<List<NoteAndSchedule>>
+
+    @Query("SELECT * FROM Note LEFT JOIN Schedule ORDER BY date")
+    fun getSortedETA(): LiveData<List<NoteAndSchedule>>
+
+    @Query("SELECT * FROM Note ORDER BY creationDate")
+    fun getSortedCreationDate(): LiveData<List<NoteAndSchedule>>
 }
