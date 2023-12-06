@@ -19,11 +19,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val customAdapter = CustomRecyclerViewAdapter((application as DbApp).repository)
+        val customAdapter = CustomRecyclerViewAdapter()
 
         val recyclerView: RecyclerView = findViewById(R.id.notes_recyclerView)
         recyclerView.adapter = customAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        (application as DbApp).repository.allNaS.observe(this) {
+            customAdapter.noteList = it
+            customAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

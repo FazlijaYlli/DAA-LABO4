@@ -21,6 +21,6 @@ interface NaSDAO {
 
     @Query("SELECT COUNT(*) FROM Note") fun count(): LiveData<Int>
 
-    @Query("SELECT * FROM Note AS n LEFT JOIN Schedule AS s ON s.ownerId = n.noteId ORDER BY s.date ASC")
+    @Query("SELECT * FROM Note")
     fun get(): LiveData<List<NoteAndSchedule>>
 }

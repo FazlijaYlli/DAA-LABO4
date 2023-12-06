@@ -15,7 +15,7 @@ import com.example.daa_labo4.models.Type
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-class CustomRecyclerViewAdapter(private val repository: Repository) :
+class CustomRecyclerViewAdapter(var noteList: List<NoteAndSchedule> = emptyList()) :
     RecyclerView.Adapter<CustomRecyclerViewAdapter.ViewHolder>() {
 
     /**
@@ -83,16 +83,14 @@ class CustomRecyclerViewAdapter(private val repository: Repository) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        repository.allNaS.value?.get(position)?.let {
-            viewHolder.bind(it)
-        }
+        viewHolder.bind(noteList[position])
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     //override fun getItemCount() = repository.nasCount.value!!
     // Todo : Is it ok ?
     override fun getItemCount(): Int {
-        return if (repository.nasCount.value == null) 0 else repository.nasCount.value!!
+        return noteList.size;
     }
     /*override fun getItemViewType(position: Int): Int {
         return dataSet[position].note.type.ordinal
