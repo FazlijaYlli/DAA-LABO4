@@ -87,13 +87,26 @@ class CustomRecyclerViewAdapter(var noteList: List<NoteAndSchedule> = emptyList(
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    //override fun getItemCount() = repository.nasCount.value!!
-    // Todo : Is it ok ?
     override fun getItemCount(): Int {
         return noteList.size;
     }
-    /*override fun getItemViewType(position: Int): Int {
-        return dataSet[position].note.type.ordinal
-    }*/
+
+    fun sortNoteListByCreationDate() {
+        noteList = noteList.sortedByDescending {
+            it.note.creationDate
+        }
+        for (elem in noteList){
+            println(elem.note)
+        }
+    }
+
+    fun sortNoteListByNearestDueDate() {
+        noteList = noteList.sortedByDescending {
+            it.schedule?.date
+        }
+        for (elem in noteList){
+            println(elem.schedule)
+        }
+    }
 
 }

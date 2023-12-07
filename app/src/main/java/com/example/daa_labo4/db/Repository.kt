@@ -17,15 +17,6 @@ class Repository(private val nasDAO: NaSDAO, private val noteDAO: NoteDAO, priva
         }
     }
 
-
-    fun sortedByCreation() : LiveData<List<NoteAndSchedule>> {
-        return nasDAO.getSortedCreationDate()
-    }
-
-    fun sortedByETA() : LiveData<List<NoteAndSchedule>> {
-        return nasDAO.getSortedETA()
-    }
-
     fun delete(nas: NoteAndSchedule) {
         thread {
             noteDAO.delete(nas.note)

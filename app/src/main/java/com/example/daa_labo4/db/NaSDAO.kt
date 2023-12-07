@@ -21,12 +21,7 @@ interface NaSDAO {
 
     @Query("SELECT COUNT(*) FROM Note") fun count(): LiveData<Int>
 
-    @Query("SELECT * FROM Note")
+    @Query("SELECT * FROM Note AS n LEFT JOIN Schedule AS s ON s.ownerId = n.noteId")
     fun get(): LiveData<List<NoteAndSchedule>>
 
-    @Query("SELECT * FROM Note LEFT JOIN Schedule ORDER BY date")
-    fun getSortedETA(): LiveData<List<NoteAndSchedule>>
-
-    @Query("SELECT * FROM Note ORDER BY creationDate")
-    fun getSortedCreationDate(): LiveData<List<NoteAndSchedule>>
 }

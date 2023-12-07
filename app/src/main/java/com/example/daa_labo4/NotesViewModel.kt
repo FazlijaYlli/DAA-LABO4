@@ -1,5 +1,6 @@
 package com.example.daa_labo4;
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.daa_labo4.db.Repository
@@ -7,7 +8,7 @@ import com.example.daa_labo4.models.Note
 import com.example.daa_labo4.models.NoteAndSchedule
 
 public class NotesViewModel(private val repository: Repository) : ViewModel() {
-    var allNotes = repository.allNaS
+    val allNotes = repository.allNaS
     val countNotes = repository.nasCount
 
     fun generateANote() {
@@ -19,13 +20,14 @@ public class NotesViewModel(private val repository: Repository) : ViewModel() {
         repository.deleteAll()
     }
 
-    fun sortNoteListByCreationDate() {
-        allNotes = repository.sortedByCreation()
+    enum class SortType{
+        CREATE,
+        ETA
     }
 
-    fun sortNoteListByNearestDueDate() {
-        allNotes = repository.sortedByETA()
-    }
+    var sortEnum = MutableLiveData(SortType.CREATE)
+
+
 }
 
 class NotesViewModelFactory(private val repository: Repository) : ViewModelProvider.Factory {

@@ -39,5 +39,30 @@ class FragmentNotes : Fragment() {
             customAdapter.noteList = noteViewModel.allNotes.value!!
             customAdapter.notifyDataSetChanged()
         }
+
+        noteViewModel.allNotes.observe(viewLifecycleOwner){
+            customAdapter.noteList = noteViewModel.allNotes.value!!
+            when(noteViewModel.sortEnum.value){
+                NotesViewModel.SortType.CREATE->{
+                    customAdapter.sortNoteListByCreationDate()
+                }
+                NotesViewModel.SortType.ETA ->{
+                    customAdapter.sortNoteListByNearestDueDate()
+                }
+                else -> {}
+            }
+        }
+
+        noteViewModel.sortEnum.observe(viewLifecycleOwner){
+            when(noteViewModel.sortEnum.value){
+                NotesViewModel.SortType.CREATE->{
+                    customAdapter.sortNoteListByCreationDate()
+                }
+                NotesViewModel.SortType.ETA ->{
+                    customAdapter.sortNoteListByNearestDueDate()
+                }
+                else -> {}
+            }
+        }
     }
 }
