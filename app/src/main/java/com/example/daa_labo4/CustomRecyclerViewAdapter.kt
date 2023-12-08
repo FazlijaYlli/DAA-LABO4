@@ -71,7 +71,6 @@ class CustomRecyclerViewAdapter(var noteList: List<NoteAndSchedule> = emptyList(
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
-        // TODO: Use 2 different layouts
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.row_item, viewGroup, false)
 
@@ -95,17 +94,11 @@ class CustomRecyclerViewAdapter(var noteList: List<NoteAndSchedule> = emptyList(
         noteList = noteList.sortedByDescending {
             it.note.creationDate
         }
-        for (elem in noteList){
-            println(elem.note)
-        }
     }
 
     fun sortNoteListByNearestDueDate() {
         noteList = noteList.sortedByDescending {
             it.schedule?.date
-        }
-        for (elem in noteList){
-            println(elem.schedule)
         }
     }
 

@@ -9,6 +9,8 @@ class Repository(private val nasDAO: NaSDAO, private val noteDAO: NoteDAO, priva
     val nasCount = nasDAO.count()
 
     fun insert(nas: NoteAndSchedule) {
+        println(nas.note)
+        println(nas.schedule)
         thread {
             noteDAO.insert(nas.note)
             if (nas.schedule != null) {
